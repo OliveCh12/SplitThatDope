@@ -1,28 +1,44 @@
 <template>
   <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+    {{/* Header Web Content */}}
+    <header>
+      <div class="container">
+        <h1>Split/<strong>Crush</strong></h1>
+      </div>
+    </header>
+    {{/* Wrapper Web Content */}}
+    <div class="wrapper">
+      <div class="container">
+        <b-tabs>
+          <b-tab title="Split" active>
+            <Mixing></Mixing>
+          </b-tab>
+          <b-tab title="Charts">
+            <HelloWorld msg="Welcome to Weed Split" />
+          </b-tab>
+        </b-tabs>
+      </div>
+    </div>
+    {{/* Footer Web Component */}}
+    <Footer company="Corporate" author="Olivier Chemla" />
   </div>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
+  import HelloWorld from './components/HelloWorld.vue'
+  import Mixing from './components/Mixing.vue'
+  import Footer from './components/Footer.vue'
 
-export default {
-  name: 'app',
-  components: {
-    HelloWorld
+  export default {
+    name: 'app',
+    components: {
+      HelloWorld,
+      Footer,
+      Mixing,
+    }
   }
-}
 </script>
 
 <style>
-#app {
-  font-family: 'Avenir', Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
-}
+  @import 'assets/css/main.css';
 </style>
