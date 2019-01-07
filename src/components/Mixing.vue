@@ -1,9 +1,9 @@
-<template>   
+<template>  
     <div class="row">
         <div class="col-md-6">
             <div class="form-group">
-                <label for="">Unit Price ( {{ this.priceUnit }} €
-                    <font-awesome-icon icon="long-arrow-alt-right" /> 1 g )</label>
+                <label for="">Unit Price : <span class="badge badge-primary">{{ this.priceUnit }} €
+                    <font-awesome-icon icon="long-arrow-alt-right" /> 1 g </span></label>
                 <input class="form-control" v-model.number="priceUnit" type="number" min="0" placeholder="0" v-on:keyup="onChange">
             </div>
         </div>
@@ -21,7 +21,7 @@
         </div>
         <div class="col-md-6">
             <div class="form-group">
-                <label for="">Price share: <span class="badge badge-primary">{{ newCustomer.price }} €</span></label>
+                <label for="">Customer Price : <span class="badge badge-primary">{{ newCustomer.price }} €</span></label>
                 <input class="form-control" v-model.number="newCustomer.price" type="number" placeholder="0" @keyup.enter="addCustomer">
             </div>
         </div>
@@ -31,18 +31,22 @@
             <br><br>
         </div>
         <div class="col-md-12">
-            <table class="table table-borderless table-hover">
+            <table class="table table-borderless table-hover" v-show="customers.length >= 1">
                 <thead>
                     <tr>
-                        <th scope="col">N°</th>
+                        <!-- <th scope="col">N°</th> -->
                         <th scope="col">Customers ( {{ totalCustomers }} )</th>
-                        <th scope="col">Price ( {{ totalPrice }} € )</th>
-                        <th scope="col">Amount ( {{ totalAmount }} g )</th>
+                        <th scope="col" v-if="priceRemaining > 0">Price ( {{ totalPrice }} € ) <font-awesome-icon class="arrow-up" icon="caret-up" />{{ priceRemaining }} €</th>
+                        <th scope="col" v-else-if="priceRemaining < 0">Price ( {{ totalPrice }} € ) <font-awesome-icon class="arrow-down" icon="caret-down" />{{ priceRemaining }} €</th>
+                        <th scope="col" v-else-if="priceRemaining === 0">Price ( {{ totalPrice }} € ) <font-awesome-icon icon="cannabis"/></th>
+                        <th scope="col" v-if="amountRemaining > 0">Amount ( {{ totalAmount }} g ) <font-awesome-icon class="arrow-up" icon="caret-up" />{{ amountRemaining }} g</th>
+                        <th scope="col" v-else-if="amountRemaining < 0">Amount ( {{ totalAmount }} g ) <font-awesome-icon class="arrow-down" icon="caret-down" />{{ amountRemaining }} g</th>
+                        <th scope="col" v-else-if="amountRemaining === 0">Amount ( {{ totalAmount }} g ) <font-awesome-icon icon="cannabis" /></th>
                     </tr>
                 </thead>
                 <tbody>
-                    <tr v-for="(customer, index) in customers" :key="customer.id">
-                        <th scope="row">{{ index }}</th>
+                    <tr v-for="customer in customers" :key="customer.id">
+                        <!-- <th scope="row">{{ index }}</th> -->
                         <td v-if="customer.price === 0">{{ customer.name }} <strong>( Looser...🙄 )</strong></td>
                         <td v-else-if="customer.price === 0 && customer.name === ''">Unknow <strong>( Looser...🙄 )</strong></td>
                         <td v-else-if="customer.name === ''">Unknow</td>
@@ -105,6 +109,16 @@
             totalAmount: function () {
                 let totalAmount = this.$_.floor(this.$_.sumBy(this.customers, 'amount'), 2)
                 return totalAmount
+            }, 
+            priceRemaining: function() {
+                let totalPrice = this.$_.floor(this.$_.sumBy(this.customers, 'price'), 2)
+                let priceRemaining = this.$_.floor(this.$_.subtract(this.priceUnit*this.amount, totalPrice), 2)
+                return priceRemaining;
+            }, 
+            amountRemaining: function() {
+                let totalAmount = this.$_.floor(this.$_.sumBy(this.customers, 'amount'), 2)
+                let amountRemaining = this.$_.floor(this.$_.subtract(this.amount, totalAmount), 2)
+                return amountRemaining
             }
         },
     }
@@ -115,14 +129,16 @@
         color: rgba(41, 206, 179, 1);
     }
     .badge{
-        font-weight: 500 !important;
+        font-weight: 600 !important;
         font-size: 100% !important;
     }
     .badge-primary{
         color: #1f232c !important;
         background-color: rgba(41, 206, 179, 1) !important;    
     }
-
+    .form-group{
+        text-align: right;
+    }
     .form-control {
         background-color: #1f232c !important;
         color: #fff !important;
@@ -148,4 +164,37 @@
     .nav-tabs .nav-link:hover {
         border: 1px solid rgba(255, 255, 255, 0.1) !important;
     }
+    .arrow-down{
+        color: rgb(199, 65, 65);
+        margin-left: 3px;
+        margin-right: 3px;
+        animation: bounce_down 1.5s ease infinite;
+        transform-origin: 50% 50%;
+    }
+    .arrow-up{
+        color: rgb(91, 94, 248);
+        margin-left: 3px;
+        margin-right: 3px;
+        animation: bounce_up 1.5s ease infinite;
+        transform-origin: 50% 50%;
+    }
+
+    @keyframes bounce_up {
+        0% { transform:translateY(-5px) }
+        12.5% { transform:translateY(0) }
+        25% { transform:translateY(0) }
+        50% { transform:translateY() }
+        62.5% { transform:translateY(0) }
+        75% { transform:translateY() }
+        100% { transform:translateY(-5px) }
+      }
+      @keyframes bounce_down {
+        0% { transform:translateY(5px) }
+        12.5% { transform:translateY(0) }
+        25% { transform:translateY(0) }
+        50% { transform:translateY() }
+        62.5% { transform:translateY(0) }
+        75% { transform:translateY() }
+        100% { transform:translateY(5px) }
+      }
 </style>

@@ -12,14 +12,14 @@ import 'bootstrap/dist/css/bootstrap.css'
 import 'bootstrap-vue/dist/bootstrap-vue.css'
 
 import { library } from '@fortawesome/fontawesome-svg-core'
-import { faCannabis, faLongArrowAltRight} from '@fortawesome/free-solid-svg-icons'
+import { faCannabis, faLongArrowAltRight, faCaretUp, faCaretDown} from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
 
-library.add(faCannabis, faLongArrowAltRight)
+library.add(faCannabis, faLongArrowAltRight, faCaretUp, faCaretDown)
 
 Vue.component('font-awesome-icon', FontAwesomeIcon)
 
-Vue.config.productionTip = false
+Vue.config.productionTip = false  
 
 new Vue({
   render: h => h(App),

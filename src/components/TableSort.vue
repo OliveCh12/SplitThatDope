@@ -27,18 +27,7 @@
                         sortable: true
                     },
                 },
-                customers: [{
-                        name: 'Marion',
-                        amount: 4,
-                        price: 40,
-                    },
-                    {
-                        name: 'Philippe',
-                        amount: 3,
-                        price: 30,
-                    },
-
-                ]
+                customers: []
             }
         },
     }
