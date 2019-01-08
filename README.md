@@ -1,4 +1,4 @@
-# dope
+# Split That Dope
 
 ## Project setup
 ```

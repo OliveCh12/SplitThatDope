@@ -40,7 +40,7 @@
     }
 
     .table td {
-        border-top: none !important;
+        border-top: 1px solid rgba(255, 255, 255, 0.1) !important;
     }
 
     .table thead th {
@@ -53,6 +53,16 @@
 
     .table-hover tbody tr:hover {
         background-color: rgba(41, 206, 179, 0.1) !important;
+    }
+    .remaining{
+        font-size: 10pt;
+        opacity: 0.7;
+    }
+
+    @media screen and (max-width: 425px) {
+        table{
+            font-size: 10pt;
+        }
     }
 </style>
 

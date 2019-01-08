@@ -21,7 +21,7 @@
       </div>
     </div>
     {{/* Footer Web Component */}}
-    <Footer company="Split Crush" author="Olivier Chemla" />
+    <Footer company="Split That Dope" author="Olivier Chemla" />
   </div>
 </template>
 

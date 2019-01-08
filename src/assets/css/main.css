@@ -1,9 +1,21 @@
 @import url('https://fonts.googleapis.com/css?family=Rubik');
 
+@font-face {
+    font-family: 'Archive';
+    src: url('/fonts/Archive.eot');
+    src: url('/fonts/Archive.eot?#iefix') format('embedded-opentype'),
+        url('/fonts/Archive.woff2') format('woff2'),
+        url('/fonts/Archive.woff') format('woff'),
+        url('/fonts/Archive.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+
 body {
     font-family: 'Rubik', sans-serif !important;
 
 }
+
 #app {
     display: flex;
     flex-direction: column;
@@ -66,4 +78,9 @@ strong {
 
 a {
     color: rgba(41, 206, 179, 1) !important;
+}
+
+.btn-primary {
+    background-color: rgba(41, 206, 179, 1) !important;
+    border: 1px solid rgba(41, 206, 179, 1) !important;
 }
