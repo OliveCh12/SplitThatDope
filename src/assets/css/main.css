@@ -1,4 +1,5 @@
-@import url('https://fonts.googleapis.com/css?family=Rubik');
+@import url('https://fonts.googleapis.com/css?family=Righteous|Rubik');
+
 
 @font-face {
     font-family: 'Archive';
@@ -42,11 +43,11 @@ header .container {
 }
 
 h1 {
-    font-family: 'Archive' !important;
+    font-family: 'Righteous', cursive !important;
     color: #fff;
     font-size: 1.5em !important;
     text-transform: uppercase;
-    font-weight: bolder;
+    font-weight: 300 !important;
     margin-top: 0.5em !important;
 }
 
